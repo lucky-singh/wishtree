@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+ 
 from flask import Flask, render_template, request, url_for, redirect
 from models import *
 from sqlalchemy.sql.expression import func

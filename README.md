@@ -1,2 +1,2 @@
 # Wish Tree
-Wish Tree is a feature request app where a companies can manage request and help team to prioritize work.
+Wish Tree is a feature request app where a company can manage requests and help team to prioritize work.
