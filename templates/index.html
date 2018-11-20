@@ -1,0 +1,120 @@
+{% extends "layout.html" %} {% block main %}
+<main role="main" class="container">
+  <div
+    class="d-flex align-items-center p-3 my-3 text-black-50 bg-light rounded shadow-sm"
+  >
+    <img
+      class="mr-3"
+      src="{{ url_for('static', filename='images/Tanabata-Wish-Tree.svg') }}"
+      alt=""
+      width="70"
+      height="70"
+    />
+    <button
+      type="button"
+      class="btn btn-primary btn-block"
+      id="formButton"
+      onclick="toggleFeatureRequestForm()"
+    >
+      New Feature Request
+    </button>
+  </div>
+
+  <div>
+    <form id="form1" action="{{ url_for('index') }}" method="post">
+      <div class="form-group">
+        <label for="featureTitle">Title</label>
+        <textarea
+          class="form-control"
+          id="featureTitle"
+          name="featureTitle"
+          rows="1"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="featureDescription">Description</label>
+        <textarea
+          class="form-control"
+          id="featureDescription"
+          name="featureDescription"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="form-group">
+        <label for="featureClient">Client</label>
+        <select class="form-control" id="featureClient" name="featureClient">
+          {% for c in clients%}
+          <option>{{ c.client }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="featureClientPriority">Client Priority</label>
+        <select
+          class="form-control"
+          id="featureClientPriority"
+          name="featureClientPriority"
+        >
+          {% for priority in priorities %}
+          <option>{{ priority }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="featureTargetDate">Target Date</label>
+        <input
+          type="date"
+          class="form-control"
+          id="featureTargetDate"
+          name="featureTargetDate"
+        />
+      </div>
+      <div class="form-group">
+        <label for="featureProductArea">Product Area</label>
+        <select
+          class="form-control"
+          id="featureProductArea"
+          name="featureProductArea"
+        >
+          {% for p in productAreas %}
+          <option>{{ p.productArea }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary form-control">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+  {% for p in productAreas%}
+  <h5 class="border-bottom border-gray pb-2 mb-0">{{ p.productArea }}</h5>
+  <table class="table table-hover my-3 p-3 bg-white rounded shadow-sm">
+    <thead>
+      <tr>
+        <th scope="col">Priority</th>
+        <th scope="col">Title</th>
+        <th scope="col">client</th>
+        <th scope="col">Target Date</th>
+      </tr>
+    </thead>
+    {% for feature in features %} {% if feature.productArea == p.productArea %}
+
+    <tbody>
+      <tr>
+        <th scope="row">{{ feature.priority }}</th>
+        <td>{{ feature.title }}</td>
+        <td>{{ feature.client }}</td>
+        <td>{{ feature.targetDate }}</td>
+      </tr>
+      <tr>
+        <td colspan="4">{{ feature.description }}</td>
+      </tr>
+    </tbody>
+    {% endif %} {% endfor %}
+  </table>
+  {% endfor %}
+</main>
+{% endblock %}
