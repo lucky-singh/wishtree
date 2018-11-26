@@ -1,5 +1,7 @@
 # Wish Tree
 
+[![Build Status](https://travis-ci.com/lucky-singh/wishtree.svg?branch=master)](https://travis-ci.org/lucky-singh/wishtree)
+
 Wish Tree is a feature request app where a company can manage software feature requests for their clients and developers can make dreams come true.
 
 ### Installation
