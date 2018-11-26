@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    features = Feature.query.all()
+    features = Feature.query.order_by(Feature.priority).all()
     clients = Client.query.all()
     productAreas = ProductArea.query.all()
 
@@ -76,11 +76,25 @@ def index():
         featureDescription = request.form.get("featureDescription")
         featureClient = request.form.get("featureClient")
         featureClientPriority = request.form.get("featureClientPriority")
-        featureTargetDate = datetime.strptime(request.form.get("featureTargetDate"), "%Y-%m-%d").date()
-        featureProductArea=request.form.get("featureProductArea")
-        feature=Feature(title = featureTitle, description = featureDescription,
-                          client = featureClient, priority = featureClientPriority,
-                          targetDate = featureTargetDate, productArea = featureProductArea)
+        featureTargetDate = datetime.strptime(
+            request.form.get("featureTargetDate"), "%Y-%m-%d").date()
+        featureProductArea = request.form.get("featureProductArea")
+        # Reorder Client Priority
+        checkPriority = db.session.query(Feature).filter(
+            Feature.priority == featureClientPriority).filter(Feature.client == featureClient).one_or_none()
+        if checkPriority == None:
+            pass
+        else:
+            newPriority = db.session.query(Feature).filter(
+                Feature.priority >= featureClientPriority).filter(Feature.client == featureClient).all()
+            for p in newPriority:
+                p.priority += 1
+                print(p.priority)
+                db.session.commit()
+
+        feature = Feature(title=featureTitle, description=featureDescription,
+                          client=featureClient, priority=featureClientPriority,
+                          targetDate=featureTargetDate, productArea=featureProductArea)
         db.session.add(feature)
         db.session.commit()
 
@@ -94,8 +108,8 @@ def index():
         })
         return redirect(url_for('index'))
     return render_template("index.html",
-                           clients = clients,
-                           priorities = sorted(priorities),
-                           productAreas = productAreas,
-                           features = features
+                           clients=clients,
+                           priorities=sorted(priorities),
+                           productAreas=productAreas,
+                           features=features
                            )

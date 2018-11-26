@@ -96,24 +96,24 @@
     </form>
   </div>
 
-  {% for p in productAreas%}
-  <h5 class="border-bottom border-gray pb-2 mb-0">{{ p.productArea }}</h5>
+  {% for p in clients%}
+  <h5 class="border-bottom border-gray pb-2 mb-0">{{ p.client }}</h5>
   <table class="table table-hover my-3 p-3 bg-white rounded shadow-sm">
     <thead>
       <tr>
         <th scope="col">Priority</th>
         <th scope="col">Title</th>
-        <th scope="col">client</th>
+        <th scope="col">product Area</th>
         <th scope="col">Target Date</th>
       </tr>
     </thead>
-    {% for feature in features %} {% if feature.productArea == p.productArea %}
+    {% for feature in features %} {% if feature.client == p.client %}
 
     <tbody>
       <tr>
         <th scope="row">{{ feature.priority }}</th>
         <td>{{ feature.title }}</td>
-        <td>{{ feature.client }}</td>
+        <td>{{ feature.productArea }}</td>
         <td>{{ feature.targetDate }}</td>
       </tr>
       <tr>
