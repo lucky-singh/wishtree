@@ -65,8 +65,6 @@
     </nav>
 
     {% block main%} {% endblock %}
-    <!-- Local JavaScript -->
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -84,5 +82,7 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
+    <!-- Local JavaScript -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   </body>
 </html>
