@@ -11,4 +11,4 @@ before_script:
   - export FLASK_DEBUG=1
   - python "$TRAVIS_BUILD_DIR/app.py"
 
-script: "$TRAVIS_BUILD_DIR/test.py"
+script: python "$TRAVIS_BUILD_DIR/test.py"
