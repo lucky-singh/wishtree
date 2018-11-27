@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template, request, url_for, redirect
-from models import *
-from sqlalchemy.sql.expression import func
 from datetime import date, datetime
+from flask import Flask, redirect, render_template, request, url_for
+from models import *
+from os import getenv
+from sqlalchemy.sql.expression import func
 
 app = Flask(__name__)
 
 # Database connection
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///wishtree.db'
+app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
@@ -89,7 +90,6 @@ def index():
                 Feature.priority >= featureClientPriority).filter(Feature.client == featureClient).all()
             for p in newPriority:
                 p.priority += 1
-                print(p.priority)
                 db.session.commit()
 
         feature = Feature(title=featureTitle, description=featureDescription,
