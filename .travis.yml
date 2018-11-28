@@ -2,7 +2,6 @@
 sudo: false
 language: python
 python:
-  - 2.7
   - 3.6
 install: pip install -r requirements.txt
 
@@ -12,3 +11,12 @@ before_script:
   - python "$TRAVIS_BUILD_DIR/app.py"
 
 script: python "$TRAVIS_BUILD_DIR/test.py"
+
+deploy:
+  - provider: elasticbeanstalk
+    access_key_id: AKIAJAVFKERWW254CLLA
+    secret_access_key: $AWS_SECRET_KEY
+    app: wishtree
+    env: Wishtree-env
+    bucket_name: wishtree
+    skip_cleanup: true
