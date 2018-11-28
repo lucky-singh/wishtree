@@ -12,7 +12,7 @@ COPY . /usr/src/app
 RUN chmod -R a+rx /usr/src/app/
 
 # ------------------------
-# Set Enviornment variable1
+# Set Enviornment variable
 # ------------------------
 ENV FLASK_APP=app.py
 ENV DATABASE_URL='sqlite:///wishtree.db'

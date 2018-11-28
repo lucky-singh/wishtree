@@ -6,7 +6,7 @@ Wish Tree is a feature request app where a company can manage software feature r
 
 ### Installation
 
-Clone and cd to the repository and run bash install.sh if you are on Ubuntu and navigate to http://127.0.0.1:5000/
+Clone and cd to the repository and run bash install.sh if you are on Ubuntu and navigate to http://0.0.0.0:5000/
 
 Otherwise please follow step by step instruction.
 1. Make sure you have python, pip, virtualenv and git installed
@@ -24,7 +24,7 @@ Otherwise please follow step by step instruction.
 6. export environment variables
     ```sh
     export FLASK_APP=app.py
-    export FLASK_ENV=development
+    export DATABASE_URL='sqlite:///wishtree.db'
     ```
 7. initilize database
     ```sh
@@ -32,8 +32,8 @@ Otherwise please follow step by step instruction.
     ```
 8. Start Flask application
     ```sh
-    flask run
+    gunicorn -b 0.0.0.0:5000 app:app
     ```
-9. navigate to http://127.0.0.1:5000/
+9. navigate to http://0.0.0.0:5000/
 
-Now Wish Tree should be appread on the browser.
+Now Wish Tree should be appeared in the browser.
