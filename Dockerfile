@@ -2,11 +2,6 @@ FROM python:3.6-slim-jessie
 
 USER root
 
-# --------------------
-# INSTALL OS PACKAGES
-# --------------------
-RUN apt-get install -y libpq-dev
-
 # ---------------------
 # CONFIG DIRS IN OS
 # ---------------------
