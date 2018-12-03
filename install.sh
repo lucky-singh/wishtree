@@ -3,8 +3,8 @@
 # Repo location
 #git clone https://github.com/lucky-singh/wishtree.git && cd wishtree
 
-apt update -y
-apt install -y python python-pip virtualenv git
+sudo apt update -y
+sudo apt install -y python python-pip virtualenv git
 
 virtualenv venv
 source venv/bin/activate
