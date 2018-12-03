@@ -8,6 +8,7 @@ install: pip install -r requirements.txt
 before_script:
   - export FLASK_APP="$TRAVIS_BUILD_DIR/app.py"
   - export FLASK_DEBUG=1
+  - export DATABASE_URL='sqlite:///wishtree.db'
   - python "$TRAVIS_BUILD_DIR/app.py"
 
 script: python "$TRAVIS_BUILD_DIR/test.py"
